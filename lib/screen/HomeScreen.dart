@@ -2,6 +2,7 @@
 // import 'package:e_commerce_app/widget/app/AppBarIcons.dart';
 import 'package:e_commerce_app/widget/home/BarHomePAge.dart';
 import 'package:e_commerce_app/widget/home/SearchWidget.dart';
+import 'package:e_commerce_app/widget/home/sale_widget.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_iconly/flutter_iconly.dart';
 
@@ -24,6 +25,7 @@ class Homescreen extends StatelessWidget {
               const SizedBox(height: 18),
               SearchWidget(),
               const SizedBox(height: 18),
+              SaleWidget(),
             ],
           ),
         ),
