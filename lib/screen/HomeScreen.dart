@@ -1,11 +1,14 @@
 // import 'package:e_commerce_app/const/global_colors.dart';
 // import 'package:e_commerce_app/widget/app/AppBarIcons.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:e_commerce_app/widget/app/AppBarIcons.dart';
 // import 'package:e_commerce_app/widget/app/AppBarIcons.dart';
 import 'package:e_commerce_app/widget/home/BarHomePAge.dart';
+import 'package:e_commerce_app/widget/home/ProdectWidget.dart';
 import 'package:e_commerce_app/widget/home/SearchWidget.dart';
 import 'package:e_commerce_app/widget/home/sale_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 // import 'package:flutter_iconly/flutter_iconly.dart';
 // import 'package:flutter_iconly/flutter_iconly.dart';
 
@@ -37,7 +40,11 @@ class Homescreen extends StatelessWidget {
                         height: size.height * 0.25,
                         child: SwiperWidget(),
                       ),
-                     
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Latest_products(),
+                      ),
+                      Prodectwidget(),
                     ],
                   ),
                 ),
@@ -46,6 +53,32 @@ class Homescreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class Latest_products extends StatelessWidget {
+  const Latest_products({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        const Text(
+          "Latest Products",
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 18,
+          ),
+        ),
+        Spacer(),
+        Appbaricons(
+          function: () {},
+          icon: IconlyBold.arrowRight2,
+        ),
+      ],
     );
   }
 }
