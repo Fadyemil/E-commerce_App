@@ -1,9 +1,17 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:e_commerce_app/const/global_colors.dart';
 import 'package:e_commerce_app/screen/HomeScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    DevicePreview(
+      enabled: true,
+      builder: (context) {
+        return const MyApp();
+      },
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
