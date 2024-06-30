@@ -2,24 +2,28 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:e_commerce_app/Model/Product_Model.dart';
+import 'package:e_commerce_app/manger/get_Product/get_product_state.dart';
 import 'package:e_commerce_app/services/all_product_services.dart';
-// import 'package:meta/meta.dart';
-
-part 'get_product_state.dart';
 
 class GetProdectCubit extends Cubit<GetProdectState> {
   GetProdectCubit() : super(GetProdectInitial());
 
-  late ProductModel productModel;
+  late List<ProductModel> productsList = [];
 
-   GetProdect() async {
+  Future<List<ProductModel>> getProdect() async {
+    emit(GetProductLoadingState());
+    print("Loading state emitted");
     try {
-      productModel =
-          (await AllProductServices().getAllProducts()) as ProductModel;
-      print(productModel);
-      emit(GetProductLoadingState());
+      productsList = await AllProductServices().getAllProducts();
+      print("Products fetched: ${productsList.length}");
+      emit(GetProductSuccessState(productsList as ProductModel));
+      print("Success state emitted");
+      return productsList;
     } catch (e) {
+      print("Error: $e");
+
       emit(GetProductFailureState(e.toString()));
+      return [];
     }
   }
 }

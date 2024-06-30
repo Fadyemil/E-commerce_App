@@ -1,12 +1,17 @@
-part of 'get_product_cubit.dart';
+import 'package:e_commerce_app/Model/Product_Model.dart';
 
-sealed class GetProdectState {}
+abstract class GetProdectState {}
 
-final class GetProdectInitial extends GetProdectState {}
+class GetProdectInitial extends GetProdectState {}
 
-final class GetProductLoadingState extends GetProdectState {}
+class GetProductLoadingState extends GetProdectState {}
 
-final class GetProductFailureState extends GetProdectState {
-  final String errorMessage;
-  GetProductFailureState(this.errorMessage);
+class GetProductSuccessState extends GetProdectState {
+  final ProductModel products;
+  GetProductSuccessState(this.products);
+}
+
+class GetProductFailureState extends GetProdectState {
+  final String error;
+  GetProductFailureState(this.error);
 }

@@ -1,11 +1,16 @@
-import 'package:e_commerce_app/manger/get_Product/get_product_cubit.dart';
+// ignore_for_file: unused_local_variable
+
+import 'package:e_commerce_app/Model/Product_Model.dart';
+// import 'package:e_commerce_app/manger/get_Product/get_product_cubit.dart';
+// import 'package:e_commerce_app/manger/get_Product/get_product_state.dart';
+import 'package:e_commerce_app/services/all_product_services.dart';
 import 'package:e_commerce_app/widget/home/BarHomePAge.dart';
 import 'package:e_commerce_app/widget/home/Latest_products.dart';
 import 'package:e_commerce_app/widget/app/ProdectWidget.dart';
 import 'package:e_commerce_app/widget/home/SearchWidget.dart';
 import 'package:e_commerce_app/widget/home/SwiperWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Homescreen extends StatelessWidget {
   const Homescreen({super.key});
@@ -20,12 +25,30 @@ class Homescreen extends StatelessWidget {
       },
       child: Scaffold(
         appBar: BarHomePAge(context),
-        body: BlocBuilder<GetProdectCubit, GetProdectState>(
+        /* body: BlocBuilder<GetProdectCubit, GetProdectState>(
           builder: (context, state) {
+            print("Current state: $state");
             if (state is GetProductLoadingState) {
+              return Center(child: CircularProgressIndicator());
+            } else if (state is GetProductFailureState) {
+              return Center(child: Text('Error: ${state.error}'));
+            } else if (state is GetProductSuccessState) {
               return DataHomePage(size: size);
             } else {
-              return Text('error');
+              return Center(child: Text('*************Error*******'));
+            }
+          },
+        ),*/
+        body: FutureBuilder(
+          future: AllProductServices().getAllProducts(),
+          builder: (BuildContext, Snapshot) {
+            if (Snapshot.hasData) {
+              List<ProductModel> product = Snapshot.data!;
+              return DataHomePage(size: size);
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
             }
           },
         ),
