@@ -1,8 +1,13 @@
+// import 'package:e_commerce_app/screen/CategoriesScreen.dart';
+// import 'package:e_commerce_app/manger/get_Product/get_product_cubit.dart';
 import 'package:e_commerce_app/screen/CategoriesScreen.dart';
 import 'package:e_commerce_app/screen/User_screen.dart';
 import 'package:e_commerce_app/widget/app/AppBarIcons.dart';
+// import 'package:e_commerce_app/widget/app/AppBarIcons.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+// import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:page_transition/page_transition.dart';
 
 AppBar BarHomePAge(BuildContext context) {
@@ -20,6 +25,10 @@ AppBar BarHomePAge(BuildContext context) {
             ),
           );
         },
+        //  function: (){
+        //   var getProdectCubit = BlocProvider.of<GetProdectCubit>(context);
+        //   getProdectCubit.getProdect();
+        //  }
         icon: IconlyBold.category),
     actions: [
       Appbaricons(

@@ -1,19 +1,41 @@
 // ignore_for_file: unused_local_variable
 
-import 'package:e_commerce_app/Model/Product_Model.dart';
-// import 'package:e_commerce_app/manger/get_Product/get_product_cubit.dart';
-// import 'package:e_commerce_app/manger/get_Product/get_product_state.dart';
-import 'package:e_commerce_app/services/all_product_services.dart';
+// import 'package:e_commerce_app/Model/Product_Model.dart';
+import 'package:e_commerce_app/manger/get_Product/get_product_cubit.dart';
+import 'package:e_commerce_app/manger/get_Product/get_product_state.dart';
+// import 'package:e_commerce_app/services/all_product_services.dart';
 import 'package:e_commerce_app/widget/home/BarHomePAge.dart';
 import 'package:e_commerce_app/widget/home/Latest_products.dart';
 import 'package:e_commerce_app/widget/app/ProdectWidget.dart';
 import 'package:e_commerce_app/widget/home/SearchWidget.dart';
 import 'package:e_commerce_app/widget/home/SwiperWidget.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Homescreen extends StatelessWidget {
+class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
+
+  @override
+  State<Homescreen> createState() => _HomescreenState();
+}
+
+class _HomescreenState extends State<Homescreen> {
+  @override
+  void initState() {
+    super.initState();
+    /**
+     ** WidgetsBinding هو كائن يتم استخدامه في Flutter للوصول إلى وظائف مختلفة تتعلق بالتفاعل بين واجهة المستخدم والمحرك.
+     ** addPostFrameCallback() هي وظيفة تسمح لك بتحديد دالة يجب استدعاؤها بمجرد اكتمال بناء وتجهيز إطار الواجهة بشكل كامل
+     ** WidgetsBinding.instance يوفر الوصول إلى النسخة الحالية لـ WidgetsBinding.
+     ** في هذا السياق، _ هو اسم مستخدم للإشارة إلى المعلمة التي تمر إلى الدالة الصغيرة (callback).
+     ** الدالة الصغيرة تحتوي على الشيفرة التي تريد تنفيذها بمجرد اكتمال بناء الواجهة.
+     ** يمكنك استخدامها بمجرد اكتمال بناء وتجهيز إطار الواجهة بشكل كامل.
+     */
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      var getProdectCubit = BlocProvider.of<GetProdectCubit>(context);
+      getProdectCubit.getProdect();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +47,9 @@ class Homescreen extends StatelessWidget {
       },
       child: Scaffold(
         appBar: BarHomePAge(context),
-        /* body: BlocBuilder<GetProdectCubit, GetProdectState>(
+        body: BlocBuilder<GetProdectCubit, GetProdectState>(
           builder: (context, state) {
-            print("Current state: $state");
+            print("***************Current state: $state***************");
             if (state is GetProductLoadingState) {
               return Center(child: CircularProgressIndicator());
             } else if (state is GetProductFailureState) {
@@ -38,8 +60,8 @@ class Homescreen extends StatelessWidget {
               return Center(child: Text('*************Error*******'));
             }
           },
-        ),*/
-        body: FutureBuilder(
+        ),
+        /* body: FutureBuilder(
           future: AllProductServices().getAllProducts(),
           builder: (BuildContext, Snapshot) {
             if (Snapshot.hasData) {
@@ -51,7 +73,7 @@ class Homescreen extends StatelessWidget {
               );
             }
           },
-        ),
+        ),*/
       ),
     );
   }

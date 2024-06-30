@@ -16,7 +16,7 @@ class GetProdectCubit extends Cubit<GetProdectState> {
     try {
       productsList = await AllProductServices().getAllProducts();
       print("Products fetched: ${productsList.length}");
-      emit(GetProductSuccessState(productsList as ProductModel));
+      emit(GetProductSuccessState(productsList));
       print("Success state emitted");
       return productsList;
     } catch (e) {

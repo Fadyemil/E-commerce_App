@@ -7,7 +7,7 @@ class GetProdectInitial extends GetProdectState {}
 class GetProductLoadingState extends GetProdectState {}
 
 class GetProductSuccessState extends GetProdectState {
-  final ProductModel products;
+  final List<ProductModel> products;
   GetProductSuccessState(this.products);
 }
 
