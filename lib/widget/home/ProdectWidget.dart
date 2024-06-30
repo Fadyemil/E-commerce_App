@@ -62,6 +62,7 @@ class Prodectwidget extends StatelessWidget {
             child: FancyShimmerImage(
               height: size.height * 0.2,
               width: double.infinity,
+              //! Displaying a danger icon in red color with a size of 28 pixels if there's an error loading the image
               errorWidget: Icon(
                 IconlyBold.danger,
                 color: Colors.red,
@@ -69,8 +70,23 @@ class Prodectwidget extends StatelessWidget {
               ),
               imageUrl:
                   'https://thumbs.dreamstime.com/b/happy-cute-kid-boy-think-choose-food-160958190.jpg',
+              boxFit: BoxFit.fill,
             ),
-          )
+          ),
+          SizedBox(height: 10),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'title',
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+          SizedBox(height: size.height * 0.01),
         ],
       ),
     );

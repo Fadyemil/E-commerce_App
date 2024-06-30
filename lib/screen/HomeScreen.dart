@@ -44,7 +44,21 @@ class Homescreen extends StatelessWidget {
                         padding: EdgeInsets.all(8.0),
                         child: Latest_products(),
                       ),
-                      Prodectwidget(),
+                      GridView.builder(
+                        itemCount: 5,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 8,
+                          mainAxisSpacing: 8,
+                          childAspectRatio: 0.7,
+                        ),
+                        itemBuilder: (Context, index) {
+                          return const Prodectwidget();
+                        },
+                      ),
                     ],
                   ),
                 ),
