@@ -1,16 +1,10 @@
-// import 'package:e_commerce_app/const/global_colors.dart';
-// import 'package:e_commerce_app/widget/app/AppBarIcons.dart';
-import 'package:card_swiper/card_swiper.dart';
-import 'package:e_commerce_app/widget/app/AppBarIcons.dart';
-// import 'package:e_commerce_app/widget/app/AppBarIcons.dart';
+
 import 'package:e_commerce_app/widget/home/BarHomePAge.dart';
+import 'package:e_commerce_app/widget/home/Latest_products.dart';
 import 'package:e_commerce_app/widget/home/ProdectWidget.dart';
 import 'package:e_commerce_app/widget/home/SearchWidget.dart';
-import 'package:e_commerce_app/widget/home/sale_widget.dart';
+import 'package:e_commerce_app/widget/home/SwiperWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_iconly/flutter_iconly.dart';
-// import 'package:flutter_iconly/flutter_iconly.dart';
-// import 'package:flutter_iconly/flutter_iconly.dart';
 
 class Homescreen extends StatelessWidget {
   const Homescreen({super.key});
@@ -71,53 +65,3 @@ class Homescreen extends StatelessWidget {
   }
 }
 
-class Latest_products extends StatelessWidget {
-  const Latest_products({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Text(
-          "Latest Products",
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 18,
-          ),
-        ),
-        Spacer(),
-        Appbaricons(
-          function: () {},
-          icon: IconlyBold.arrowRight2,
-        ),
-      ],
-    );
-  }
-}
-
-class SwiperWidget extends StatelessWidget {
-  const SwiperWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Swiper(
-      itemCount: 3,
-      itemBuilder: (context, index) {
-        return SaleWidget();
-      },
-      autoplay: true,
-      pagination: SwiperPagination(
-        margin: EdgeInsets.all(8),
-        alignment: Alignment.bottomCenter,
-        builder: DotSwiperPaginationBuilder(
-          color: Colors.white,
-          activeColor: Colors.deepPurpleAccent,
-        ),
-      ),
-    );
-  }
-}
