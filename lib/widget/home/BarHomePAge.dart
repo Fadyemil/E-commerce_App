@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/screen/CategoriesScreen.dart';
+import 'package:e_commerce_app/screen/User_screen.dart';
 import 'package:e_commerce_app/widget/app/AppBarIcons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
@@ -20,7 +21,20 @@ AppBar BarHomePAge(BuildContext context) {
           );
         },
         icon: IconlyBold.category),
-    actions: [Appbaricons(function: () {}, icon: IconlyBold.user3)],
+    actions: [
+      Appbaricons(
+          function: () {
+            Navigator.push(
+              context,
+              PageTransition(
+                type: PageTransitionType.fade,
+                duration: Duration(milliseconds: 375),
+                child: UserScreen(),
+              ),
+            );
+          },
+          icon: IconlyBold.user3)
+    ],
     title: Text("Home"),
   );
 }
