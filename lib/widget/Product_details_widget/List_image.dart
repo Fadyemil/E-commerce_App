@@ -17,7 +17,7 @@ class List_image extends StatelessWidget {
       child: Swiper(
         itemCount: 3,
         itemBuilder: (BuildContext, index) {
-          return Build_Image(size: size);
+          return Build_Image(size: size, index: index,);
         },
         autoplay: true,
         pagination: const SwiperPagination(

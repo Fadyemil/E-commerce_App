@@ -31,10 +31,12 @@ class _HomescreenState extends State<Homescreen> {
      ** الدالة الصغيرة تحتوي على الشيفرة التي تريد تنفيذها بمجرد اكتمال بناء الواجهة.
      ** يمكنك استخدامها بمجرد اكتمال بناء وتجهيز إطار الواجهة بشكل كامل.
      */
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      var getProdectCubit = BlocProvider.of<GetProdectCubit>(context);
-      getProdectCubit.getProdect();
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   var getProdectCubit = BlocProvider.of<GetProdectCubit>(context);
+    //   getProdectCubit.getProdect();
+    // });
+    // ~ or using this code
+    var getProdectCubit = context.read<GetProdectCubit>().getProdect();
   }
 
   @override
@@ -89,6 +91,7 @@ class DataHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var ProductModel = BlocProvider.of<GetProdectCubit>(context).productsList;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -109,7 +112,7 @@ class DataHomePage extends StatelessWidget {
                     child: Latest_products(),
                   ),
                   GridView.builder(
-                    itemCount: 5,
+                    itemCount: ProductModel.length,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     gridDelegate:
@@ -120,7 +123,9 @@ class DataHomePage extends StatelessWidget {
                       childAspectRatio: 0.7,
                     ),
                     itemBuilder: (Context, index) {
-                      return const Prodectwidget();
+                      return Prodectwidget(
+                        index: index,
+                      );
                     },
                   ),
                 ],

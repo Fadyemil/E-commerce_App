@@ -24,7 +24,9 @@ class AllProducts extends StatelessWidget {
             childAspectRatio: 0.7,
           ),
           itemBuilder: (Context, index) {
-            return const Prodectwidget();
+            return Prodectwidget(
+              index: index,
+            );
           },
         ),
       ),

@@ -1,15 +1,23 @@
+// ignore_for_file: non_constant_identifier_names, unused_local_variable
+
+// import 'dart:js_interop_unsafe';
+
 import 'package:e_commerce_app/const/global_colors.dart';
+import 'package:e_commerce_app/manger/get_Product/get_product_cubit.dart';
 import 'package:e_commerce_app/screen/Product_Details.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:page_transition/page_transition.dart';
 
 class Prodectwidget extends StatelessWidget {
-  const Prodectwidget({super.key});
+  const Prodectwidget({super.key, required this.index});
+  final int index;
 
   @override
   Widget build(BuildContext context) {
+    var ProdectModel = BlocProvider.of<GetProdectCubit>(context).productsList;
     Size size = MediaQuery.sizeOf(context);
     return Material(
       borderRadius: BorderRadius.circular(8.0),
@@ -28,17 +36,22 @@ class Prodectwidget extends StatelessWidget {
         },
         child: Column(
           children: [
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(8.0),
-              child: headCart(),
+              child: headCart(
+                index: index,
+              ),
             ),
             const SizedBox(height: 10),
-            Build_Image(size: size),
+            Build_Image(
+              size: size,
+              index: index,
+            ),
             const SizedBox(height: 10),
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
-                'title',
+                ProdectModel[index].title,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
                 style: TextStyle(
@@ -59,12 +72,15 @@ class Build_Image extends StatelessWidget {
   const Build_Image({
     super.key,
     required this.size,
+    required this.index,
   });
 
   final Size size;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
+    var ProdectModel = BlocProvider.of<GetProdectCubit>(context).productsList;
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: FancyShimmerImage(
@@ -76,8 +92,7 @@ class Build_Image extends StatelessWidget {
           color: Colors.red,
           size: 28,
         ),
-        imageUrl:
-            'https://thumbs.dreamstime.com/b/happy-cute-kid-boy-think-choose-food-160958190.jpg',
+        imageUrl: ProdectModel[index].category.image,
         boxFit: BoxFit.fill,
       ),
     );
@@ -87,10 +102,12 @@ class Build_Image extends StatelessWidget {
 class headCart extends StatelessWidget {
   const headCart({
     super.key,
+    required this.index,
   });
-
+  final int index;
   @override
   Widget build(BuildContext context) {
+    var ProdectModel = BlocProvider.of<GetProdectCubit>(context).productsList;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -98,31 +115,31 @@ class headCart extends StatelessWidget {
           child: RichText(
             text: TextSpan(
               text: '\$',
-              style: const TextStyle(
+              style: TextStyle(
                 color: Color.fromRGBO(33, 150, 243, 1),
               ),
               children: [
                 TextSpan(
-                  text: ' 100',
+                  text: ProdectModel[index].price.toString(),
                   style: TextStyle(
                     color: lightTextColor,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                TextSpan(
-                  text: '.',
-                  style: TextStyle(
-                    color: Colors.indigo,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                TextSpan(
-                  text: '45',
-                  style: TextStyle(
-                    color: lightTextColor,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+                // TextSpan(
+                //   text: '.',
+                //   style: TextStyle(
+                //     color: Colors.indigo,
+                //     fontWeight: FontWeight.w600,
+                //   ),
+                // ),
+                // TextSpan(
+                //   text: '45',
+                //   style: TextStyle(
+                //     color: lightTextColor,
+                //     fontWeight: FontWeight.w600,
+                //   ),
+                // ),
               ],
             ),
           ),

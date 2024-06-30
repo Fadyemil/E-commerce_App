@@ -13,7 +13,10 @@ class Categorieswidget extends StatelessWidget {
         SizedBox(
             height: size.width * 0.45,
             width: size.width * 0.45,
-            child: Build_Image(size: size)),
+            child: Build_Image(
+              size: size,
+              index: 1,
+            )),
         Align(
           alignment: Alignment.center,
           child: Text(
