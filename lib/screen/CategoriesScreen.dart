@@ -1,11 +1,14 @@
+import 'package:e_commerce_app/manger/get_Product/get_product_cubit.dart';
 import 'package:e_commerce_app/widget/Categories/CategoriesWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Categoriesscreen extends StatelessWidget {
   const Categoriesscreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var ProductModel = BlocProvider.of<GetProdectCubit>(context).productsList;
     return Scaffold(
       appBar: AppBar(
         title: Text('Categories'),
@@ -14,7 +17,7 @@ class Categoriesscreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: GridView.builder(
-          itemCount: 5,
+          itemCount: ProductModel.length,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -25,7 +28,7 @@ class Categoriesscreen extends StatelessWidget {
             mainAxisExtent: 210,
           ),
           itemBuilder: (Context, index) {
-            return const Categorieswidget();
+            return  Categorieswidget(index: index,);
           },
         ),
       ),
