@@ -36,6 +36,8 @@ class ProductModel {
       'category': category.toJson(),
     };
   }
+
+  void add(ProductModel productModel) {}
 }
 
 class Category {
