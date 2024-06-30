@@ -17,7 +17,7 @@ class Homescreen extends StatelessWidget {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        appBar: BarHomePAge(),
+        appBar: BarHomePAge(context),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -63,4 +63,3 @@ class Homescreen extends StatelessWidget {
     );
   }
 }
-
