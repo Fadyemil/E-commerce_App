@@ -7,7 +7,8 @@ import 'package:e_commerce_app/widget/Product_details_widget/desc.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetails extends StatelessWidget {
-  const ProductDetails({super.key});
+  const ProductDetails({super.key, required this.index});
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -19,15 +20,15 @@ class ProductDetails extends StatelessWidget {
           children: [
             const SizedBox(height: 18),
             const BackButton(),
-            const Padding(
+             Padding(
               padding: EdgeInsets.all(8.0),
-              child: Head_details(),
+              child: Head_details(index: index,),
             ),
-            List_image(size: size),
+            List_image(size: size, indexo: index,),
             const SizedBox(height: 18),
-            const Padding(
+             Padding(
               padding: EdgeInsets.all(8.0),
-              child: desc(),
+              child: desc(index: index,),
             )
           ],
         ),
@@ -35,6 +36,3 @@ class ProductDetails extends StatelessWidget {
     );
   }
 }
-
-
-

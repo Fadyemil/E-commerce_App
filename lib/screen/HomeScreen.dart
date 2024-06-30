@@ -112,7 +112,7 @@ class DataHomePage extends StatelessWidget {
                     child: Latest_products(),
                   ),
                   GridView.builder(
-                    itemCount: ProductModel.length,
+                    itemCount: 4,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     gridDelegate:

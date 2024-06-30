@@ -9,7 +9,7 @@ class AllProductServices {
   // Define an asynchronous function that returns a Future containing a list of ProductModel
   Future<List<ProductModel>> getAllProducts() async {
     List<dynamic> data =
-        await Api().get(uri: 'https://api.escuelajs.co/api/v1/products');
+        await Api().get(uri: 'https://fakestoreapi.com/products');
 
     // Initialize a list to store the ProductModel objects
     List<ProductModel> productsList = [];

@@ -1,28 +1,31 @@
 class ProductModel {
   int id;
   String title;
-  int price;
+  double price;
   String description;
-  List<String> images;
-  Category category;
+  String category;
+  String image;
+  Rating rating;
 
   ProductModel({
     required this.id,
     required this.title,
     required this.price,
     required this.description,
-    required this.images,
     required this.category,
+    required this.image,
+    required this.rating,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
       id: json['id'],
       title: json['title'],
-      price: json['price'],
+      price: json['price'].toDouble(),
       description: json['description'],
-      images: List<String>.from(json['images']),
-      category: Category.fromJson(json['category']),
+      category: json['category'],
+      image: json['image'],
+      rating: Rating.fromJson(json['rating']),
     );
   }
 
@@ -32,44 +35,33 @@ class ProductModel {
       'title': title,
       'price': price,
       'description': description,
-      'images': images,
-      'category': category.toJson(),
+      'category': category,
+      'image': image,
+      'rating': rating.toJson(),
     };
   }
 }
 
-class Category {
-  int id;
-  String name;
-  String image;
-  DateTime creationAt;
-  DateTime updatedAt;
+class Rating {
+  double rate;
+  int count;
 
-  Category({
-    required this.id,
-    required this.name,
-    required this.image,
-    required this.creationAt,
-    required this.updatedAt,
+  Rating({
+    required this.rate,
+    required this.count,
   });
 
-  factory Category.fromJson(Map<String, dynamic> json) {
-    return Category(
-      id: json['id'],
-      name: json['name'],
-      image: json['image'],
-      creationAt: DateTime.parse(json['creationAt']),
-      updatedAt: DateTime.parse(json['updatedAt']),
+  factory Rating.fromJson(Map<String, dynamic> json) {
+    return Rating(
+      rate: json['rate'].toDouble(),
+      count: json['count'],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
-      'name': name,
-      'image': image,
-      'creationAt': creationAt.toIso8601String(),
-      'updatedAt': updatedAt.toIso8601String(),
+      'rate': rate,
+      'count': count,
     };
   }
 }

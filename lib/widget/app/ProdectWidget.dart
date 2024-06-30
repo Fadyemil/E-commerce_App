@@ -30,7 +30,7 @@ class Prodectwidget extends StatelessWidget {
             PageTransition(
               type: PageTransitionType.fade,
               duration: Duration(milliseconds: 375),
-              child: ProductDetails(),
+              child: ProductDetails(index: index,),
             ),
           );
         },
@@ -92,7 +92,7 @@ class Build_Image extends StatelessWidget {
           color: Colors.red,
           size: 28,
         ),
-        imageUrl: ProdectModel[index].category.image,
+        imageUrl: ProdectModel[index].image,
         boxFit: BoxFit.fill,
       ),
     );
