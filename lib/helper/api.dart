@@ -36,31 +36,30 @@ class Api {
     }
   }
 
-  // Future<dynamic> post({
-  //   required String uri,
-  //   @required dynamic body,
-  //   @required String? tokeen,
-  // }) async {
-  //   Map<String, String> headers = {};
-  //   if (tokeen != null) {
-  //     headers.addAll({
-  //       'Authorization': 'Bearer $tokeen',
-  //     });
-  //   }
-  //   http.Response response = await http.post(
-  //     Uri.parse(uri),
-  //     body: body,
-  //     headers: headers,
-  //   );
-  //   if (response.statusCode == 200) {
-  //     Map<String, dynamic> data = jsonDecode(response.body);
-  //     return data;
-  //   } else {
-  //     throw Exception(
-  //       'there is a problem with the status code ${response.statusCode}+${jsonDecode(response.body)}',
-  //     );
-  //   }
-  // }
+  Future<dynamic> post(
+      {required String uri,
+      @required dynamic body,
+      @required String? tokeen}) async {
+    Map<String, String> headers = {};
+    if (tokeen != null) {
+      headers.addAll({
+        'Authorization': 'Bearer $tokeen',
+      });
+    }
+    http.Response response = await http.post(
+      Uri.parse(uri),
+      body: body,
+      headers: headers,
+    );
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data = jsonDecode(response.body);
+      return data;
+    } else {
+      throw Exception(
+        'there is a problem with the status code ${response.statusCode}+${jsonDecode(response.body)}',
+      );
+    }
+  }
 
   // Future<dynamic> put({
   //   required String uri,
