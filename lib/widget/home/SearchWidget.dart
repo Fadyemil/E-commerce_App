@@ -1,5 +1,9 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:e_commerce_app/const/global_colors.dart';
+import 'package:e_commerce_app/manger/get_Product/get_product_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
 class SearchWidget extends StatefulWidget {
@@ -10,7 +14,6 @@ class SearchWidget extends StatefulWidget {
 }
 
 class _SearchWidgetState extends State<SearchWidget> {
-
   late TextEditingController _textEditingController;
   @override
   void initState() {
@@ -34,7 +37,11 @@ class _SearchWidgetState extends State<SearchWidget> {
         ),
       ),
       child: TextField(
-        onSubmitted: (value) {},
+        onSubmitted: (value) {
+          var getProdectCubit = context
+              .read<GetProdectCubit>()
+              .getProduct_specifi_category(CategoryName: value);
+        },
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(10)),
