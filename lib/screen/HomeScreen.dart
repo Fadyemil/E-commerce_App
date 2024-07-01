@@ -31,12 +31,12 @@ class _HomescreenState extends State<Homescreen> {
      ** الدالة الصغيرة تحتوي على الشيفرة التي تريد تنفيذها بمجرد اكتمال بناء الواجهة.
      ** يمكنك استخدامها بمجرد اكتمال بناء وتجهيز إطار الواجهة بشكل كامل.
      */
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   var getProdectCubit = BlocProvider.of<GetProdectCubit>(context);
-    //   getProdectCubit.getProdect();
-    // });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      var getProdectCubit = BlocProvider.of<GetProdectCubit>(context);
+      getProdectCubit.getProdect();
+    });
     // ~ or using this code
-    var getProdectCubit = context.read<GetProdectCubit>().getProdect();
+    // var getProdectCubit = context.read<GetProdectCubit>().getProdect();
   }
 
   @override
@@ -56,7 +56,8 @@ class _HomescreenState extends State<Homescreen> {
               return Center(child: CircularProgressIndicator());
             } else if (state is GetProductFailureState) {
               return Center(child: Text('Error: ${state.error}'));
-            } else if (state is GetProductSuccessState) {
+            } else if (state is GetProductSuccessState ||
+                state is GetProducttate) {
               return DataHomePage(size: size);
             } else {
               return Center(child: Text('*************Error*******'));

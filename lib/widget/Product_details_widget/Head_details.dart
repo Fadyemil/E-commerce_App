@@ -25,7 +25,7 @@ class Head_details extends StatelessWidget {
         ),
         const SizedBox(height: 18),
         Text(
-          'rate : ${ProductModel[index].rating.rate.toString()}',
+          'rate : ${ProductModel[index].rating!.rate.toString()}',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w500,

@@ -6,7 +6,7 @@ import 'package:e_commerce_app/helper/api.dart';
 class AddProdectServices {
   Future<ProductModel> addProduct(
       {required String title,
-      required String price,
+      required dynamic price,
       required String description,
       required String image,
       required String category}) async {

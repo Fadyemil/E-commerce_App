@@ -11,6 +11,12 @@ class GetProductSuccessState extends GetProdectState {
   GetProductSuccessState(this.products);
 }
 
+class GetProducttate extends GetProdectState {
+  final ProductModel products;
+  final List<ProductModel> ProductList;
+  GetProducttate(this.products, this.ProductList);
+}
+
 class GetProductFailureState extends GetProdectState {
   final String error;
   GetProductFailureState(this.error);
